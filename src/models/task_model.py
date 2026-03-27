@@ -6,7 +6,9 @@ from src.utils.constants import BaseSchema, PyObjectId, TaskStatus
 
 class TtsTaskModel(BaseSchema):
     id: PyObjectId = Field(..., alias="_id", description="Unique task ID")
-    user_id: PyObjectId = Field(..., alias="userId", description="Owner of the task")
+    user_id: Optional[PyObjectId] = Field(
+        ..., alias="userId", description="Owner of the task"
+    )
     text: str = Field(
         ..., min_length=1, max_length=50001, description="Text to be processed"
     )
@@ -34,7 +36,9 @@ class TtsTaskModel(BaseSchema):
 
 
 class CreateTaskRequest(BaseModel):
-    user_id: PyObjectId = Field(..., description="ID of the user creating the task")
+    user_id: Optional[PyObjectId] = Field(
+        ..., description="ID of the user creating the task"
+    )
     text: str = Field(..., min_length=1, max_length=50001)
     voice_url: str = Field(..., description="URL or identifier of the voice to use")
 

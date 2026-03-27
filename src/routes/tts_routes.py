@@ -8,6 +8,7 @@ from src.utils.responses import ApiResponse
 from src.utils.get_user import get_user
 from src.models.tts_model import GenerateTtsRequest
 from src.db.config import mongodb
+from utils.constants import PyObjectId
 
 router = APIRouter()
 
@@ -19,11 +20,11 @@ async def synthesize(
     request: Request, body: GenerateTtsRequest, background_tasks: BackgroundTasks
 ):
     try:
-        user = await get_user(id=body.user_id)
-        if not user:
-            return ApiResponse.error(
-                status_code=status.HTTP_404_NOT_FOUND, message="User not found"
-            )
+        # user = await get_user(id=body.user_id)
+        # if not user:
+        #     return ApiResponse.error(
+        #         status_code=status.HTTP_404_NOT_FOUND, message="User not found"
+        #     )
 
         voice = await mongodb.cloned_voices.find_one({"_id": body.voice_id})
         if not voice:
@@ -85,7 +86,7 @@ async def synthesize(
         background_tasks.add_task(
             process_tts_task,
             task_id=task_id,
-            user_id=body.user_id,
+            user_id=PyObjectId(),
             voice_id=body.voice_id,
             text=body.text.strip(),
             voice_url=str(resolved_path),

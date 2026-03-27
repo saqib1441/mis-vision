@@ -13,7 +13,7 @@ class VoiceModel(BaseSchema):
 
 
 class LoadVoicesRequest(BaseModel):
-    user_id: PyObjectId = Field(
+    user_id: Optional[PyObjectId] = Field(
         ..., description="ID of the admin performing the action"
     )
 

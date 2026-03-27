@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+from typing import Optional
 from pydantic import Field, BaseModel
 from src.utils.constants import BaseSchema, ModelType, PyObjectId
 
@@ -27,7 +28,9 @@ class TtsRecordModel(BaseSchema):
 
 
 class GenerateTtsRequest(BaseModel):
-    user_id: PyObjectId = Field(..., description="User ID for quota verification")
+    user_id: Optional[PyObjectId] = Field(
+        ..., description="User ID for quota verification"
+    )
     voice_id: PyObjectId = Field(..., description="The voice ID to use for generation")
     text: str = Field(
         ..., min_length=1, max_length=50001, description="Text to synthesize"
