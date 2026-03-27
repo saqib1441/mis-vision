@@ -8,7 +8,7 @@ from src.utils.responses import ApiResponse
 from src.utils.get_user import get_user
 from src.models.tts_model import GenerateTtsRequest
 from src.db.config import mongodb
-from utils.constants import PyObjectId
+from src.utils.constants import PyObjectId
 
 router = APIRouter()
 
