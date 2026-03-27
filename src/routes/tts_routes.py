@@ -9,6 +9,7 @@ from src.utils.get_user import get_user
 from src.models.tts_model import GenerateTtsRequest
 from src.db.config import mongodb
 from src.utils.constants import PyObjectId
+from src.utils.normalize_text import sanitize_tts_text
 
 router = APIRouter()
 
@@ -71,7 +72,7 @@ async def synthesize(
 
         task_data = {
             "userId": str(body.user_id),
-            "text": body.text.strip(),
+            "text": sanitize_tts_text(body.text.strip()),
             "voiceUrl": str(resolved_path),
             "modelType": body.model_type,
             "status": "pending",

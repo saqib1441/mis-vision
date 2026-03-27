@@ -9,9 +9,7 @@ class TtsTaskModel(BaseSchema):
     user_id: Optional[PyObjectId] = Field(
         ..., alias="userId", description="Owner of the task"
     )
-    text: str = Field(
-        ..., min_length=1, max_length=50001, description="Text to be processed"
-    )
+    text: str
     voice_url: str = Field(..., alias="voiceUrl", description="Source voice URL")
     status: TaskStatus = Field(default=TaskStatus.PENDING)
     progress: int = Field(
@@ -39,7 +37,7 @@ class CreateTaskRequest(BaseModel):
     user_id: Optional[PyObjectId] = Field(
         ..., description="ID of the user creating the task"
     )
-    text: str = Field(..., min_length=1, max_length=50001)
+    text: str
     voice_url: str = Field(..., description="URL or identifier of the voice to use")
 
     created_at: datetime = Field(

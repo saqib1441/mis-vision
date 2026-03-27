@@ -10,7 +10,7 @@ class TtsRecordModel(BaseSchema):
         ..., alias="userId", description="The user who generated this audio"
     )
 
-    text: str = Field(..., min_length=1, max_length=50001, description="The input text")
+    text: str
     character_count: int = Field(
         ..., alias="characterCount", ge=1, description="Length of the input text"
     )
