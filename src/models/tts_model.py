@@ -32,7 +32,5 @@ class GenerateTtsRequest(BaseModel):
         ..., description="User ID for quota verification"
     )
     voice_id: PyObjectId = Field(..., description="The voice ID to use for generation")
-    text: str = Field(
-        ..., min_length=1, max_length=50001, description="Text to synthesize"
-    )
+    text: str
     model_type: ModelType = Field(default=ModelType.DEFAULT_MODEL)
