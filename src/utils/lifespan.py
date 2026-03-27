@@ -3,8 +3,8 @@ from fastapi import FastAPI
 import torch
 
 from chatterbox.tts import ChatterboxTTS
-from chatterbox.tts_turbo import ChatterboxTurboTTS
-from chatterbox.mtl_tts import ChatterboxMultilingualTTS
+# from chatterbox.tts_turbo import ChatterboxTurboTTS
+# from chatterbox.mtl_tts import ChatterboxMultilingualTTS
 
 from src.utils.ensure_directory_exists import ensure_directory_exists
 from src.utils.logger import logger
@@ -40,14 +40,14 @@ async def lifespan(app: FastAPI):
             tts_model.generate("Warmup")
 
             logger.info("Loading Chatterbox Turbo TTS model")
-            turbo_model = ChatterboxTurboTTS.from_pretrained(device=f"{device}")
-            app.state.turbo_model = turbo_model
-            turbo_model.generate("Warmup")
+            # turbo_model = ChatterboxTurboTTS.from_pretrained(device=f"{device}")
+            # app.state.turbo_model = turbo_model
+            # turbo_model.generate("Warmup")
 
             logger.info("Loading Chatterbox Multilingual TTS model")
-            mlt_model = ChatterboxMultilingualTTS.from_pretrained(device=device)
-            app.state.mtl_model = mlt_model
-            mlt_model.generate("Warmup", language_id="en")
+            # mlt_model = ChatterboxMultilingualTTS.from_pretrained(device=device)
+            # app.state.mtl_model = mlt_model
+            # mlt_model.generate("Warmup", language_id="en")
 
         logger.info("All TTS models loaded successfully")
         yield
