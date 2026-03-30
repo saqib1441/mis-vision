@@ -17,7 +17,7 @@ TURBO_PARALINGUISTIC_TAGS = [
 ]
 
 
-def text_to_chunks(text: str, model_type: ModelType, max_chars: int = 250) -> List[str]:
+def text_to_chunks(text: str, model_type: ModelType, max_chars: int = 500) -> List[str]:
     all_tags = re.findall(r"\[(.*?)\]", text)
     valid_tags_found = []
 

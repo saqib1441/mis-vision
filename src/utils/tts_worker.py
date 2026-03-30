@@ -67,7 +67,14 @@ async def process_tts_task(
             raise ValueError(f"Engine {model_type} not found.")
 
         for i, chunk_text in enumerate(chunks):
-            gen_kwargs = {"text": chunk_text.strip(), "audio_prompt_path": voice_url}
+            gen_kwargs = {
+                "text": chunk_text.strip(),
+                "audio_prompt_path": voice_url,
+                "cfg_weight": 0.3,
+                "exaggeration": 0.4,
+                "temperature": 0.7,
+                "repetition_penalty": 1.2,
+            }
             if model_type == ModelType.MULTILINGUAL_MODEL:
                 gen_kwargs["language_id"] = voice_lang
 
