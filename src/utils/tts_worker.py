@@ -70,8 +70,8 @@ async def process_tts_task(
             gen_kwargs = {
                 "text": chunk_text.strip(),
                 "audio_prompt_path": voice_url,
-                "cfg_weight": 0.3,
-                "exaggeration": 0.4,
+                "cfg_weight": 0.4,
+                "exaggeration": 0.7,
                 "temperature": 0.7,
                 "repetition_penalty": 1.2,
             }
