@@ -71,7 +71,7 @@ async def process_tts_task(
                 "text": chunk_text.strip(),
                 "audio_prompt_path": voice_url,
                 "cfg_weight": 0.4,
-                "exaggeration": 0.7,
+                "exaggeration": 0.6,
                 "temperature": 0.7,
                 "repetition_penalty": 1.2,
             }
